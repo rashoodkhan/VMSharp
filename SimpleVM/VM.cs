@@ -27,7 +27,7 @@ namespace SimpleVM
 			while ( ip < code.Length) {
 				int opcode = code [ip];		// FETCH Operation
 				if (trace) {
-					Console.Error.WriteLine (" "+ip+" "+ByteCode.opcodes[opcode]);
+					disassemble (opcode);
 				}
 				ip++;
 				switch (opcode) {
@@ -46,6 +46,27 @@ namespace SimpleVM
 
 				opcode = code[ip];
 			}
+		}
+
+		private void disassemble (int opcode) {
+			Console.Error.Write (ip+" "+ByteCode.opcodes[opcode].name);
+			if (ByteCode.opcodes [opcode].n == 1) {
+				Console.Error.Write (" "+code [ip+1]);
+			} else if (ByteCode.opcodes [opcode].n == 2) {
+				Console.Error.Write (" {0} , {1}",code[ip+1],code[ip+2]);
+			}
+
+			List<int> list = new List<int> ();
+
+			for (int i = 0; i <= sp; i++) {
+				list.Add (stack [i]);
+			}
+
+			Console.Error.Write (" [ ");
+			Console.Error.Write (String.Join (", ",list.ToArray ()));
+			Console.Error.Write (" ]");
+
+			Console.Error.WriteLine ();
 		}
 	}
 }

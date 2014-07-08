@@ -22,27 +22,42 @@ namespace SimpleVM
 		public const short POP = 15;		//POP OF THE TOP OF STACK
 		public const short HALT = 16;		//STOP THE PROGRAM
 
-		public static string[] opcodes = {
-			"",
-			"IADD",
-			"ISUB",
-			"IMUL",
-			"ILT",
-			"IEQ",
-			"BR",
-			"BRT",
-			"BRF",
-			"ICONST",
-			"LOAD",
-			"GLOAD",
-			"STORE",
-			"GSTORE",
-			"PRINT",
-			"POP",
-			"HALT"
+		public static Instruction[] opcodes = {
+			null,
+			new Instruction("IADD"),
+			new Instruction("ISUB"),
+			new Instruction("IMUL"),
+			new Instruction("ILT"),
+			new Instruction("IEQ"),
+			new Instruction("BR",1),
+			new Instruction("BRT",1),
+			new Instruction("BRF",1),
+			new Instruction("ICONST",1),
+			new Instruction("LOAD",1),
+			new Instruction("GLOAD",1),
+			new Instruction("STORE",1),
+			new Instruction("GSTORE",1),
+			new Instruction("PRINT"),
+			new Instruction("POP"),
+			new Instruction("HALT")
 		};
 
 		public ByteCode () {
+		}
+	}
+
+	public class Instruction
+	{
+		public string name;
+		public int n = 0;
+
+		public Instruction(string name) {
+			this.name = name;
+		}
+
+		public Instruction(String name,int nargs) {
+			this.name = name;
+			this.n = nargs;
 		}
 	}
 }

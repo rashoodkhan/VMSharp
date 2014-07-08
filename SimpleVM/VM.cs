@@ -113,6 +113,7 @@ namespace SimpleVM
 						stack [++sp] = ip;
 						fp = sp;
 						ip = addr;
+						break;
 
 					//Function return semantics
 					case ByteCode.RET:

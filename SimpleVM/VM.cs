@@ -59,6 +59,24 @@ namespace SimpleVM
 						globals [addr] = v;
 						break;
 
+					case ByteCode.IADD:
+						int val2 = stack [sp--];
+						int val1 = stack [sp--];
+						stack [++sp] = val1 + val2;
+						break;
+					
+					case ByteCode.ISUB:
+						val2 = stack [sp--];
+						val1 = stack [sp--];
+						stack [++sp] = val1 - val2;
+						break;
+
+					case ByteCode.IMUL:
+						val2 = stack [sp--];
+						val1 = stack [sp--];
+						stack [++sp] = val1 * val2;
+						break;
+					
 					case ByteCode.HALT:
 						return;
 				}

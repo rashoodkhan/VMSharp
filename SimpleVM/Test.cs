@@ -11,9 +11,9 @@ namespace SimpleVM
 		}
 
 		static int[] hello = {
-			ByteCode.ICONST, 20202,
-			ByteCode.GSTORE, 0,
-			ByteCode.GLOAD, 0,
+			ByteCode.ICONST, 90,
+			ByteCode.ICONST, 10,
+			ByteCode.IMUL,
 			ByteCode.PRINT,
 			ByteCode.HALT
 		};

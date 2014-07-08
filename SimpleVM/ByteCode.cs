@@ -45,7 +45,9 @@ namespace SimpleVM
 			new Instruction("POP"),
 			new Instruction("HALT"),
 			new Instruction("TRUE"),
-			new Instruction("FALSE")
+			new Instruction("FALSE"),
+			new Instruction("CALL",2),
+			new Instruction("RET",1)
 		};
 
 		public ByteCode () {

@@ -21,6 +21,8 @@ namespace SimpleVM
 		public const short PRINT = 14;		//PRINT THE TOP OF STACK
 		public const short POP = 15;		//POP OF THE TOP OF STACK
 		public const short HALT = 16;		//STOP THE PROGRAM
+		public const short TRUE = 17;		//BOOLEAN TRUE
+		public const short FALSE = 18;		//BOOLEAN FALSE
 
 		public static Instruction[] opcodes = {
 			null,

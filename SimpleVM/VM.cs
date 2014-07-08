@@ -77,6 +77,22 @@ namespace SimpleVM
 						stack [++sp] = val1 * val2;
 						break;
 					
+					case ByteCode.BR:
+						ip = code [ip++];
+						break;
+					
+					case ByteCode.BRT:
+						addr = code [ip++];
+						if (stack [sp--] == ByteCode.TRUE)
+							ip = addr;
+						break;
+
+					case ByteCode.BRF:
+						addr = code [ip++];
+						if (stack [sp--] == ByteCode.FALSE)
+							ip = addr;
+						break;
+					
 					case ByteCode.HALT:
 						return;
 				}

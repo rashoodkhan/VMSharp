@@ -125,6 +125,25 @@ namespace SimpleVM
 						sp -= nargs;
 						stack [++sp] = rvalue;
 						break;
+
+					case ByteCode.ILT:
+						val2 = stack [sp--];
+						val1 = stack [sp--];
+						if (val1 < val2)
+							stack [++sp] = ByteCode.TRUE;
+						else
+							stack [++sp] = ByteCode.FALSE;
+						break;
+					
+					case ByteCode.IEQ:
+						val2 = stack [sp--];
+						val1 = stack [sp--];
+						if (val1 == val2)
+							stack [++sp] = ByteCode.TRUE;
+						else
+							stack [++sp] = ByteCode.FALSE;
+						break;
+
 					case ByteCode.HALT:
 						return;
 				}

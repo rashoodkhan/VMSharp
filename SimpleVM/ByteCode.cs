@@ -23,6 +23,8 @@ namespace SimpleVM
 		public const short HALT = 16;		//STOP THE PROGRAM
 		public const short TRUE = 17;		//BOOLEAN TRUE
 		public const short FALSE = 18;		//BOOLEAN FALSE
+		public const short CALL = 19;
+		public const short RET = 20;
 
 		public static Instruction[] opcodes = {
 			null,
@@ -41,7 +43,9 @@ namespace SimpleVM
 			new Instruction("GSTORE",1),
 			new Instruction("PRINT"),
 			new Instruction("POP"),
-			new Instruction("HALT")
+			new Instruction("HALT"),
+			new Instruction("TRUE"),
+			new Instruction("FALSE")
 		};
 
 		public ByteCode () {

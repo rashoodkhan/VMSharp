@@ -47,11 +47,13 @@ namespace SimpleVM
 						Console.WriteLine (">> {0}",v);
 						break;
 
+					//Loads the data from global memory
 					case ByteCode.GLOAD:
 						int addr = code [ip++];
 						stack [++sp] = globals [addr--];
 						break;
 
+					//Stores data in to global memory
 					case ByteCode.GSTORE:
 						v = stack [sp];
 						sp--;
@@ -77,22 +79,51 @@ namespace SimpleVM
 						stack [++sp] = val1 * val2;
 						break;
 					
+					//Branches the instruction pointer -> go to statement
 					case ByteCode.BR:
 						ip = code [ip++];
 						break;
 					
+					//Branches on true -> if statements
 					case ByteCode.BRT:
 						addr = code [ip++];
 						if (stack [sp--] == ByteCode.TRUE)
 							ip = addr;
 						break;
 
+					//Branches on false
 					case ByteCode.BRF:
 						addr = code [ip++];
 						if (stack [sp--] == ByteCode.FALSE)
 							ip = addr;
 						break;
 					
+					//Loads the local variable from the stack
+					case ByteCode.LOAD:
+						int offset = code [ip++];
+						stack [++sp] = stack [fp + offset];
+						break;
+					
+					//Function call semantics
+					case ByteCode.CALL:
+						addr = code [ip++];
+						int nargs = code [ip++];
+						stack [++sp] = nargs;
+						stack [++sp] = fp;
+						stack [++sp] = ip;
+						fp = sp;
+						ip = addr;
+
+					//Function return semantics
+					case ByteCode.RET:
+						int rvalue = stack [sp--];
+						sp = fp;
+						ip = stack [sp--];
+						fp = stack [sp--];
+						nargs = stack [sp--];
+						sp -= nargs;
+						stack [++sp] = rvalue;
+						break;
 					case ByteCode.HALT:
 						return;
 				}
